@@ -25,14 +25,11 @@ public class Bush : BiomeManager {
       
     }
     
-    protected override int GetMaxSpawns()
-    {
-        return MAX_BUSH;
-    }
+   
 
     protected override LayerMask GetBiomeLayer()
     {
-        return bushLayer;
+        return bushLayer = LayerMask.NameToLayer("Grass");
     }
 
     void changeState(){

@@ -4,14 +4,10 @@ public class CoconoutTree : BiomeManager {
     
 
 
-protected override int GetMaxSpawns()
-    {
-        return MAX_COCONUTTREE;
-    }
 
     protected override LayerMask GetBiomeLayer()
     {
-        return coconutLayer;
+        return coconutLayer = LayerMask.NameToLayer("Sand");    
     }
     private void OnDestroy()
     {
