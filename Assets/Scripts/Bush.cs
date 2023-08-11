@@ -8,7 +8,7 @@ public class Bush : BiomeMeneger {
 
     [SerializeField]
     private Sprite stage1,stage2,stage3;
-    
+
     private float time;
     private bool isHarvest = false; //pode colher?
 
@@ -23,6 +23,16 @@ public class Bush : BiomeMeneger {
     }
     private void Update() { 
       
+    }
+    
+    protected override int GetMaxSpawns()
+    {
+        return MAX_BUSH;
+    }
+
+    protected override LayerMask GetBiomeLayer()
+    {
+        return bushLayer;
     }
 
     void changeState(){
@@ -55,4 +65,9 @@ public class Bush : BiomeMeneger {
                 
                 }
         }
+
+        private void OnDestroy()
+    {
+        RemoveOccupiedPosition(transform.position);
+    }
 }

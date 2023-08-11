@@ -15,6 +15,9 @@ public class BiomeManager : MonoBehaviour
     private float minDistanceFromPlayer = 2.0f;
     private float minDistanceFromAnother = 2.0f;
 
+    public LayerMask coconutLayer;
+    public LayerMask bushLayer;
+
     private float count;
 
     private List<Vector3> occupiedPositions = new List<Vector3>();
@@ -47,36 +50,52 @@ public class BiomeManager : MonoBehaviour
         {
             SpawnObject(prefab, spawnPosition);
         }
-    }
-
-    private Vector3 CalculateSpawnPosition(Vector2 min, Vector2 max, GameObject prefab){
-        Vector3 spawnPosition = Vector3.zero;
-
-        for (int i = 0; i < 100; i++){
-            spawnPosition = new Vector3(
-                Random.Range(min.x - spawnBuffer, max.x + spawnBuffer),
-                Random.Range(min.y - spawnBuffer, max.y + spawnBuffer),
-                0f
-            );
-
-            if (!IsPositionOccupied(spawnPosition) &&
-                IsPositionFarEnough(spawnPosition, minDistanceFromPlayer)){
-                return spawnPosition;
-            }
+        if (IsObjectInBiomeLayer(prefab))
+    {
+        Vector3 spawnPosition = CalculateSpawnPosition(min, max, prefab);
+        if (spawnPosition != Vector3.zero)
+        {
+            SpawnObject(prefab, spawnPosition);
         }
-
-        return Vector3.zero;
     }
 
-    private bool IsPositionOccupied(Vector3 position){
-        foreach (Vector3 occupiedPosition in occupiedPositions){
-            if (Vector3.Distance(position, occupiedPosition) < minDistanceFromPlayer)
-            {
-                return true;
-            }
+    }
+
+    private Vector3 CalculateSpawnPosition(Vector2 min, Vector2 max, GameObject prefab)
+{
+    Vector3 spawnPosition = Vector3.zero;
+
+    for (int i = 0; i < 100; i++)
+    {
+        spawnPosition = new Vector3(
+            Random.Range(min.x - spawnBuffer, max.x + spawnBuffer),
+            Random.Range(min.y - spawnBuffer, max.y + spawnBuffer),
+            0f
+        );
+
+        if (!IsPositionOccupied(spawnPosition) &&
+            IsPositionFarEnough(spawnPosition, minDistanceFromPlayer) &&
+            IsPositionFarEnoughFromOther(spawnPosition, minDistanceFromAnother))
+        {
+            return spawnPosition;
         }
-        return false;
     }
+
+    return Vector3.zero;
+}
+
+private bool IsPositionFarEnoughFromOther(Vector3 position, float minDistance)
+{
+    foreach (Vector3 occupiedPosition in occupiedPositions)
+    {
+        if (Vector3.Distance(position, occupiedPosition) < minDistance)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 
     private bool IsPositionFarEnough(Vector3 position, float minDistance){
         if (Vector3.Distance(position, player.transform.position) < minDistance){
@@ -100,4 +119,22 @@ public class BiomeManager : MonoBehaviour
         count += Time.deltaTime;
         //Debug.Log(count);
     }
+
+    protected bool IsObjectInBiomeLayer(GameObject obj)
+{
+    if (obj.layer == coconutLayer || obj.layer == bushLayer)
+    {
+        return true;
+    }
+    return false;
+}
+protected void RemoveOccupiedPosition(Vector3 position)
+{
+    if (occupiedPositions.Contains(position))
+    {
+        occupiedPositions.Remove(position);
+    }
+}
+
+
 }
