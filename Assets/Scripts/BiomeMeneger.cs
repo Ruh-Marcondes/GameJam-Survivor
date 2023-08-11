@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class BiomeManager : MonoBehaviour
 {
-    private const int MAX_COCONUTTREE = 10;
+    private const int MAX_COCONUTTREE = 3;
     private const int MAX_BUSH = 50;
 
     public GameObject coconutPrefab;
@@ -13,6 +13,7 @@ public class BiomeManager : MonoBehaviour
     private GameObject player;
     private float spawnBuffer = 1.0f;
     private float minDistanceFromPlayer = 2.0f;
+    private float minDistanceFromAnother = 2.0f;
 
     private float count;
 
@@ -31,7 +32,7 @@ public class BiomeManager : MonoBehaviour
         Vector2 cameraMin = mainCamera.ViewportToWorldPoint(new Vector2(0, 0));
         Vector2 cameraMax = mainCamera.ViewportToWorldPoint(new Vector2(1, 1));
 
-        if(count >= 5){
+        if(count >= 5 ){
             CheckForSpawn(cameraMin, cameraMax, coconutPrefab);
             CheckForSpawn(cameraMin, cameraMax, bushPrefab);
 
