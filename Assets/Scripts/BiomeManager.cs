@@ -95,6 +95,10 @@ private bool IsPositionFarEnoughFromOther(Vector3 position, float minDistance)
     }
     return true;
 }
+protected virtual LayerMask GetBiomeLayer()
+{
+    return LayerMask.NameToLayer("Default"); // Ou o valor que fizer sentido para a classe base
+}
 
 
     private bool IsPositionFarEnough(Vector3 position, float minDistance){

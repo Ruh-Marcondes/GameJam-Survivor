@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CoconoutTree : BiomeMeneger {
+public class CoconoutTree : BiomeManager {
     
 
 

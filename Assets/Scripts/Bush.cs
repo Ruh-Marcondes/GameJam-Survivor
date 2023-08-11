@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bush : BiomeMeneger {
+public class Bush : BiomeManager {
     
     [SerializeField] //mostra a variavel no inpect do unity 
     private  SpriteRenderer spriterender;
