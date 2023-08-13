@@ -153,7 +153,7 @@ public class BiomeManager : MonoBehaviour
             occupiedPositions.Remove(position);
         }
     }
-    private bool IsPositionOccupied(Vector3 position)
+    private bool IsPositionOccupied(Vector3 position) // Verifica se a posição sorteada está nessa posição
     {
         foreach (Vector3 occupiedPosition in occupiedPositions)
         {
