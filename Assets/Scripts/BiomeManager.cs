@@ -40,7 +40,10 @@ public class BiomeManager : MonoBehaviour
         define o valor de count;
         */
     }
-
+    protected virtual GameObject GetPrefab()
+    {
+        return null; // A classe base não sabe qual prefab usar
+    }
     private void FixedUpdate()
     {
         /*

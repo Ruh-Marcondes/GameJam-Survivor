@@ -8,7 +8,7 @@ public class Bush : BiomeManager {
 
     [SerializeField]
     private Sprite stage1,stage2,stage3;
-
+    public GameObject bushPrefab;
     private float time;
     private bool isHarvest = false; //pode colher?
 
@@ -27,9 +27,16 @@ public class Bush : BiomeManager {
     
    
 
+   
+
+    protected override GameObject GetPrefab()
+    {
+        return bushPrefab; // Retorna o prefab específico do arbusto
+    }
+
     protected override LayerMask GetBiomeLayer()
     {
-        return layerMaskthis = LayerMask.NameToLayer("Grass");
+        return LayerMask.NameToLayer("Grass"); // Define a camada correta para os arbustos
     }
 
     void changeState(){
