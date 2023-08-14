@@ -381,7 +381,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.964125
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -405,7 +405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.54, y: 31.59, z: -10}
+  m_LocalPosition: {x: 14.6, y: 18.5, z: -10}
   m_LocalScale: {x: 1.5137528, y: 1.5137528, z: 1.5137528}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 2143902215}
   - component: {fileID: 2143902214}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ConfigBiomeManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8c8f5adf9b8604cb4bd3348b549c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisPrefeb: {fileID: 0}
+  thisPrefeb: {fileID: 3080237051921799893, guid: f07b0011d14d6084d959c1ab902c6652, type: 3}
   layerMaskthis:
     serializedVersion: 2
     m_Bits: 0
