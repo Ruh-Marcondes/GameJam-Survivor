@@ -29,7 +29,7 @@ public class Bush : BiomeManager {
 
     protected override LayerMask GetBiomeLayer()
     {
-        return bushLayer = LayerMask.NameToLayer("Grass");
+        return layerMaskthis = LayerMask.NameToLayer("Grass");
     }
 
     void changeState(){

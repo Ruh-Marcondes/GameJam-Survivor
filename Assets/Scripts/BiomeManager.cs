@@ -8,13 +8,12 @@ public class BiomeManager : MonoBehaviour
     private const int MAX_BUSH = 50;
 
     //Objetos que serão spawnados
-    public GameObject coconutPrefab;
-    public GameObject bushPrefab;
+    public GameObject thisPrefeb;
 
     //Camera e distancias
     private Camera mainCamera;
     private GameObject player;
-    private float spawnBuffer = 1.0f; 
+    private float spawnBuffer = 1.0f;
     /*
     O spawnBuffer é usado para garantir que os objetos não 
     sejam gerados muito próximos uns dos outros ou dos limites da área de jogo visível.
@@ -23,8 +22,7 @@ public class BiomeManager : MonoBehaviour
     private float minDistanceFromAnother = 2.0f;
 
     //Layers
-    public LayerMask coconutLayer;
-    public LayerMask bushLayer;
+    public LayerMask layerMaskthis;
 
     //Outros
     private float count;
@@ -53,19 +51,20 @@ public class BiomeManager : MonoBehaviour
         Vector2 cameraMin = mainCamera.ViewportToWorldPoint(new Vector2(0, 0));
         Vector2 cameraMax = mainCamera.ViewportToWorldPoint(new Vector2(1, 1));
 
-        CheckForSpawn(cameraMin, cameraMax, coconutPrefab);
-        CheckForSpawn(cameraMin, cameraMax, bushPrefab);
+        CheckForSpawn(cameraMin, cameraMax, thisPrefeb);
+  
     }
 
     private void CheckForSpawn(Vector2 min, Vector2 max, GameObject prefab)
     {
         Vector3 spawnPosition = CalculateSpawnPosition(min, max, prefab); // varivel vector3 que recebe o calculo so
-        if (spawnPosition != Vector3.zero 
-        && IsObjectInBiomeLayer(prefab) 
-        && count >= 5){ //If verifica se vector3 não é zero se está no bioma correto e se count é maior que o tempinho que precisa
-                SpawnObject(prefab, spawnPosition); // chama o spawnObject passa 2 parametros.
-            }
+        if (spawnPosition != Vector3.zero
+        && IsObjectInBiomeLayer(prefab)
+        && count >= 5)
+        { //If verifica se vector3 não é zero se está no bioma correto e se count é maior que o tempinho que precisa
+            SpawnObject(prefab, spawnPosition); // chama o spawnObject passa 2 parametros.
         }
+    }
 
 
     private Vector3 CalculateSpawnPosition(Vector2 min, Vector2 max, GameObject prefab)
@@ -77,13 +76,13 @@ public class BiomeManager : MonoBehaviour
             calculatedSpawnPosition = new Vector3(
                 Random.Range(min.x - spawnBuffer, max.x + spawnBuffer), //1. `Random.Range(min.x - spawnBuffer, max.x + spawnBuffer)`: Isso gera um valor aleatório entre `min.x - spawnBuffer` (o limite esquerdo do retângulo com uma margem) e `max.x + spawnBuffer` (o limite direito do retângulo com uma margem). Isso determina a coordenada X da posição de spawn.
                 Random.Range(min.y - spawnBuffer, max.y + spawnBuffer), //2. `Random.Range(min.y - spawnBuffer, max.y + spawnBuffer)`: Isso gera um valor aleatório entre `min.y - spawnBuffer` (o limite inferior do retângulo com uma margem) e `max.y + spawnBuffer` (o limite superior do retângulo com uma margem). Isso determina a coordenada Y da posição de spawn.
-                //3. `0f`: Essa é a coordenada Z da posição de spawn. No Unity, o eixo Z é usado para determinar a profundidade em um espaço tridimensional. Definir como 0f significa que o objeto será colocado no plano XY, sem profundidade.
+                                                                        //3. `0f`: Essa é a coordenada Z da posição de spawn. No Unity, o eixo Z é usado para determinar a profundidade em um espaço tridimensional. Definir como 0f significa que o objeto será colocado no plano XY, sem profundidade.
                 0f
             );
 
             if (!IsPositionOccupied(calculatedSpawnPosition)  // Verifica   se não está ocupado passa a posição sorteada
-                &&IsPositionFarEnough(calculatedSpawnPosition, minDistanceFromPlayer) &&
-                IsPositionFarEnoughFromOther(calculatedSpawnPosition, minDistanceFromAnother))
+                && IsPositionFarEnough(calculatedSpawnPosition, minDistanceFromPlayer) &&//Verifica se está longe o suficiente do Player
+                IsPositionFarEnoughFromOther(calculatedSpawnPosition, minDistanceFromAnother))//Verifica se está longe o sulficiente de outros objetos
             {
                 return calculatedSpawnPosition;
             }
@@ -141,7 +140,7 @@ public class BiomeManager : MonoBehaviour
 
     protected bool IsObjectInBiomeLayer(GameObject obj)
     {
-        if (obj.layer == coconutLayer || obj.layer == bushLayer)
+        if (obj.layer == layerMaskthis.value)
         {
             return true;
         }
@@ -153,6 +152,17 @@ public class BiomeManager : MonoBehaviour
         {
             occupiedPositions.Remove(position);
         }
+    }
+    private bool IsPositionOccupied(Vector3 position)
+    {
+        foreach (Vector3 occupiedPosition in occupiedPositions)
+        {
+            if (Vector3.Distance(position, occupiedPosition) < minDistanceFromAnother)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 
