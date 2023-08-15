@@ -1,17 +1,13 @@
 using UnityEngine;
 
-public class CoconoutTree : BiomeMeneger {
+public class CoconoutTree : BiomeManager {
     
 
-
-protected override int GetMaxSpawns()
-    {
-        return MAX_COCONUTTREE;
-    }
+    
 
     protected override LayerMask GetBiomeLayer()
     {
-        return coconutLayer;
+        return layerMaskthis = LayerMask.NameToLayer("Sand");    
     }
     private void OnDestroy()
     {

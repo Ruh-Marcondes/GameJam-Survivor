@@ -8,10 +8,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Sand
   - Water
   - UI
-  - 
+  - Grass
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Sand
+    uniqueID: 665220257
+    locked: 0
+  - name: Grass
+    uniqueID: 789492715
+    locked: 0
+  - name: Palyer
+    uniqueID: 1247477967
     locked: 0
