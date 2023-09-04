@@ -1,0 +1,46 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "maps/island.tmx",
+    "expandedProjectPaths": [
+        "tilesets",
+        "maps",
+        "."
+    ],
+    "fileStates": {
+        "maps/island.tmx": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 938.25,
+                "y": 933.5
+            }
+        },
+        "tilesets/tileground.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 4
+        }
+    },
+    "last.imagePath": "C:/Users/marco/Documents/GitHub/Game-JamSurvivor/Assets/Art",
+    "map.height": 360,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 640,
+    "openFiles": [
+        "maps/island.tmx"
+    ],
+    "project": "map-1.tiled-project",
+    "recentFiles": [
+        "maps/island.tmx",
+        "tilesets/tileground.tsx"
+    ],
+    "resizeMap.removeObjects": false,
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

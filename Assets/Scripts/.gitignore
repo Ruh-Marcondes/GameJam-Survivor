@@ -1,0 +1,5 @@
+#ignora todos os metas 
+*.meta
+
+#ignora o uteis.txt
+uteis.txt
